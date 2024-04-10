@@ -1,5 +1,5 @@
 import { attachLikeButtonHandler } from "./likebuttons.js";
-import { initEditComments } from "./editcomment.js";
+import { initEditComments } from "./editcomments.js";
 
 export function renderComments(commentsData) {
    
