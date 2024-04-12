@@ -8,6 +8,9 @@ export function getListElements() {
         .then((response) => {
             loadingElement.style.display = "none";
             return response.json();
+        })
+        .catch((error) => {
+            console.error("Ошибка при загрузке комментариев:", error);
         });
 }
 
@@ -33,4 +36,13 @@ export function postListElement({ name, text }) {
                 return response.json()
             }
         })
+        .catch((error) => {
+            if (error.message === "Сервер упал") {
+              alert("Сервер временно недоступен. Пожалуйста, попробуйте позже.");
+            } else if (error.message === "Ошибочный запрос") {
+              alert("Имя и комментарий должны быть не короче 3 символов.");
+            } else {
+              alert("Кажется, у вас сломался интернет, попробуйте позже");
+            }
+          });
 }

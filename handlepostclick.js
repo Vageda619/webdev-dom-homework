@@ -1,6 +1,7 @@
-import { postComment } from "./postcomment.js";
-import { addCommentElement, addFormElement, nameInputElement, textAreaElement} from "./main.js";
-
+import { sanitizeHtml, delay } from "./helpers.js";
+import { addCommentElement, addFormElement, nameInputElement, textAreaElement } from "./main.js";
+import { postListElement } from "./api.js";
+import { fetchAndCommentsRender } from "./fetchrender.js";
 
 export const handlePostClick = () => {
     nameInputElement.classList.remove("error");
@@ -20,26 +21,26 @@ export const handlePostClick = () => {
     addCommentElement.textContent = "Комментарий добавляется...";
     addCommentElement.style.display = "block";
 
-    postComment(textAreaElement.value, nameInputElement.value)
-
+    postListElement({ name: sanitizeHtml(nameInputElement.value), text: sanitizeHtml(textAreaElement.value) })
+        .then(() => {
+            fetchAndCommentsRender();
+            nameInputElement.value = "";
+            textAreaElement.value = "";
+        })
         .catch((error) => {
-
             if (error.message === "Сервер упал") {
                 handlePostClick();
             }
-
             else if (error.message === "Ошибочный запрос") {
                 alert("Имя и комментарий должны быть не короче 3 символов");
                 showAddForm();
                 return;
             }
-
             else {
-                alert("Кажется, у вас сломался интернет, попробуйте позже");
+                alert("Кажется, у Вас сломался интернет, попробуйте позже");
                 showAddForm();
             }
         });
-
 };
 
 function showAddForm() {

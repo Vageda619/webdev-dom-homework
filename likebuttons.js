@@ -1,4 +1,5 @@
 import { renderComments } from "./render.js";
+import { delay } from "./helpers.js";
 
 export function attachLikeButtonHandler(commentsData) {
     const likeButtons = document.querySelectorAll('.like-button');
@@ -22,11 +23,3 @@ export function attachLikeButtonHandler(commentsData) {
     }
 }
 
-/*
-function delay(interval = 300) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve();
-        }, interval);
-    });
-}
