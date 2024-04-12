@@ -1,4 +1,4 @@
-import { sanitizeHtml } from "./sanitizeHtml.js";
+import { sanitizeHtml } from "./helpers.js";
 
 export function getListElements() {
     const loadingElement = document.querySelector(".loading");

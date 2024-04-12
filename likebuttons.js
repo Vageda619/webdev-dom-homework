@@ -22,7 +22,7 @@ export function attachLikeButtonHandler(commentsData) {
     }
 }
 
-
+/*
 function delay(interval = 300) {
     return new Promise((resolve) => {
         setTimeout(() => {
