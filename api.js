@@ -7,6 +7,9 @@ export function getListElements() {
     })
         .then((response) => {
             loadingElement.style.display = "none";
+            if (response.status === 500) {
+                throw new Error("Сервер упал");
+            }
             return response.json();
         })
         .catch((error) => {
@@ -24,7 +27,6 @@ export function postListElement({ name, text }) {
         })
     })
         .then((response) => {
-
             if (response.status === 500) {
                 throw new Error("Сервер упал");
             }
@@ -38,11 +40,11 @@ export function postListElement({ name, text }) {
         })
         .catch((error) => {
             if (error.message === "Сервер упал") {
-              alert("Сервер временно недоступен. Пожалуйста, попробуйте позже.");
+                alert("Сервер временно недоступен. Пожалуйста, попробуйте позже.");
             } else if (error.message === "Ошибочный запрос") {
-              alert("Имя и комментарий должны быть не короче 3 символов.");
+                alert("Имя и комментарий должны быть не короче 3 символов.");
             } else {
-              alert("Кажется, у вас сломался интернет, попробуйте позже");
+                alert("Кажется, у вас сломался интернет, попробуйте позже");
             }
-          });
+        });
 }
