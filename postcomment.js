@@ -9,5 +9,14 @@ export const postComment = () => {
             fetchAndCommentsRender(commentsData);
             nameInputElement.value = "";
             textAreaElement.value = "";
+        })
+        .catch((error) => {
+            if (error.message === "Сервер упал") {
+                alert("Сервер временно недоступен. Пожалуйста, попробуйте позже.");
+            } else if (error.message === "Ошибочный запрос") {
+                alert("Имя и комментарий должны быть не короче 3 символов.");
+            } else {
+                alert("Кажется, у вас сломался интернет, попробуйте позже");
+            }
         });
 };
