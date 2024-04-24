@@ -1,25 +1,34 @@
 import { sanitizeHtml } from "./helpers.js";
+import { loadingElement } from "./varexp.js";
+
+
+const commentsURL = "https://wedev-api.sky.pro/api/v2/artem-vagin/comments";
+const userURL = "https://wedev-api.sky.pro/api/user/login";
+
+export let token;
+
+export const setToken = (newToken) => {
+    token = newToken;
+}
 
 export function getListElements() {
-    const loadingElement = document.querySelector(".loading");
-    return fetch("https://wedev-api.sky.pro/api/v1/artyom-vagin/comments", {
-        method: "GET"
+    return fetch(commentsURL, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
     })
         .then((response) => {
-            loadingElement.style.display = "none";
-            if (response.status === 500) {
-                throw new Error("Сервер упал");
-            }
             return response.json();
-        })
-        .catch((error) => {
-            console.error("Ошибка при загрузке комментариев:", error);
         });
 }
 
 export function postListElement({ name, text }) {
-    return fetch("https://wedev-api.sky.pro/api/v1/artyom-vagin/comments", {
+    return fetch(commentsURL, {
         method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
             name: sanitizeHtml(name),
             text: sanitizeHtml(text),
@@ -27,6 +36,7 @@ export function postListElement({ name, text }) {
         })
     })
         .then((response) => {
+
             if (response.status === 500) {
                 throw new Error("Сервер упал");
             }
@@ -38,13 +48,16 @@ export function postListElement({ name, text }) {
                 return response.json()
             }
         })
-        .catch((error) => {
-            if (error.message === "Сервер упал") {
-                alert("Сервер временно недоступен. Пожалуйста, попробуйте позже.");
-            } else if (error.message === "Ошибочный запрос") {
-                alert("Имя и комментарий должны быть не короче 3 символов.");
-            } else {
-                alert("Кажется, у вас сломался интернет, попробуйте позже");
-            }
-        });
 }
+
+export function login({ login, password }) {
+    return fetch(userURL, {
+      method: "POST",
+      body: JSON.stringify({
+        login,
+        password,
+      }),
+    }).then((response) => {
+      return response.json();
+    });
+  }

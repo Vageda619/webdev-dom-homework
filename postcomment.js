@@ -1,22 +1,16 @@
 import { postListElement } from "./api.js";
 import { fetchAndCommentsRender } from "./fetchrender.js";
-import {commentsData, nameInputElement} from "./main.js";
-import {textAreaElement} from "./main.js";
+import { commentsData } from "./main.js";
+import { userName } from "./renderLogin.js";
+import { textAreaElement, nameInputElement } from "./varexp.js";
 
 export const postComment = () => {
+    const nameInputElement = document.getElementById("name-input");
+    const textAreaElement = document.getElementById("text-input");
     return postListElement({ name: nameInputElement.value, text: textAreaElement.value })
         .then(() => {
-            fetchAndCommentsRender(commentsData);
+            fetchAndCommentsRender(commentsData, true, true, userName);
             nameInputElement.value = "";
             textAreaElement.value = "";
-        })
-        .catch((error) => {
-            if (error.message === "Сервер упал") {
-                alert("Сервер временно недоступен. Пожалуйста, попробуйте позже.");
-            } else if (error.message === "Ошибочный запрос") {
-                alert("Имя и комментарий должны быть не короче 3 символов.");
-            } else {
-                alert("Кажется, у вас сломался интернет, попробуйте позже");
-            }
         });
 };

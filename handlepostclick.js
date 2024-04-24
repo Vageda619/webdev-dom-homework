@@ -1,9 +1,14 @@
-import { sanitizeHtml, delay } from "./helpers.js";
-import { addCommentElement, addFormElement, nameInputElement, textAreaElement } from "./main.js";
-import { postListElement } from "./api.js";
-import { fetchAndCommentsRender } from "./fetchrender.js";
+import { postComment } from "./postcomment.js";
+import { isAuthenticated } from "./main.js";
 
 export const handlePostClick = () => {
+
+    const nameInputElement = document.getElementById("name-input");
+    const textAreaElement = document.getElementById("text-input");
+    const addFormElement = document.querySelector(".add-form");
+    const addCommentElement = document.getElementById("add-comment");
+
+
     nameInputElement.classList.remove("error");
     textAreaElement.classList.remove("error");
 
@@ -21,15 +26,32 @@ export const handlePostClick = () => {
     addCommentElement.textContent = "Комментарий добавляется...";
     addCommentElement.style.display = "block";
 
-    postListElement({ name: sanitizeHtml(nameInputElement.value), text: sanitizeHtml(textAreaElement.value) })
-        .then(() => {
-            fetchAndCommentsRender();
-            nameInputElement.value = "";
-            textAreaElement.value = "";
-        })
+    postComment(textAreaElement.value, nameInputElement.value, isAuthenticated)
+
+        .catch((error) => {
+
+            if (error.message === "Сервер упал") {
+                handlePostClick();
+            }
+
+            else if (error.message === "Ошибочный запрос") {
+                alert("Имя и комментарий должны быть не короче 3 символов");
+                showAddForm();
+                return;
+            }
+
+            else {
+                alert("Кажется, у вас сломался интернет, попробуйте позже");
+                showAddForm();
+            }
+        });
+
 };
 
-function showAddForm() {
+const showAddForm = () => {
+
+    const addFormElement = document.querySelector(".add-form");
+    const addCommentElement = document.getElementById("add-comment");
     addFormElement.style.display = "flex";
     addCommentElement.style.display = "none";
 }
