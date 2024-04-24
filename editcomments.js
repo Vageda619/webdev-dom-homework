@@ -1,4 +1,5 @@
-import { renderComments } from "./render.js";
+import { renderComments } from "./renderComments.js";
+// import { userName } from "./renderLogin.js";
 
 export function initEditComments(commentsData) {
     const textAreaElement = document.getElementById("text-input");
@@ -9,7 +10,7 @@ export function initEditComments(commentsData) {
             const commentAuthor = `QUOTE_BEGIN${commentsData[index].author}:`;
             const commentText = `${commentsData[index].text}QUOTE_END`;
             textAreaElement.value = `${commentAuthor}\n${commentText}\n\n`;
-            renderComments(commentsData);
+            renderComments(commentsData, true, true, userName);
         })
     }
 }

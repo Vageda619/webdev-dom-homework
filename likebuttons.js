@@ -1,5 +1,6 @@
-import { renderComments } from "./render.js";
 import { delay } from "./helpers.js";
+import { renderComments } from "./renderComments.js";
+import { userName } from "./renderLogin.js";
 
 export function attachLikeButtonHandler(commentsData) {
     const likeButtons = document.querySelectorAll('.like-button');
@@ -17,7 +18,7 @@ export function attachLikeButtonHandler(commentsData) {
                     commentsData[index].likes++;
                 }
                 commentsData[index].isLiked = !isActive;
-                renderComments(commentsData);
+                renderComments(commentsData, true, true, userName);
             });
         });
     }

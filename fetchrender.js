@@ -1,5 +1,5 @@
 import { getListElements } from "./api.js";
-import { renderComments } from "./render.js";
+import { renderComments } from "./renderComments.js";
 
 
 export function fetchAndCommentsRender(commentsData, isAuthenticated, isAuthorized, userName) {
