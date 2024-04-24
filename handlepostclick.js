@@ -27,20 +27,6 @@ export const handlePostClick = () => {
             nameInputElement.value = "";
             textAreaElement.value = "";
         })
-        .catch((error) => {
-            if (error.message === "Сервер упал") {
-                handlePostClick();
-            }
-            else if (error.message === "Ошибочный запрос") {
-                alert("Имя и комментарий должны быть не короче 3 символов");
-                showAddForm();
-                return;
-            }
-            else {
-                alert("Кажется, у Вас сломался интернет, попробуйте позже");
-                showAddForm();
-            }
-        });
 };
 
 function showAddForm() {
