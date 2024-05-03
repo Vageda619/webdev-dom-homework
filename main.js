@@ -1,10 +1,10 @@
-import { fetchAndCommentsRender } from "./fetchrender.js";
-import { userName } from "./renderLogin.js";
+import { fetchAndCommentsRender } from './fetchnrender.js'
+import { userName } from './renderLogin.js'
 
-let commentsData = [];
-export let isAuthenticated = false;
-let isAuthorized = false;
-export { commentsData };
+// Объявление переменных
+let commentsData = []
+export let isAuthenticated = false
+let isAuthorized = false
+export { commentsData }
 
-
-fetchAndCommentsRender(commentsData, isAuthenticated, isAuthorized, userName);
+fetchAndCommentsRender(commentsData, isAuthenticated, isAuthorized, userName)

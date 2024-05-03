@@ -3,8 +3,8 @@ body {
 }
 
 a {
-display: block;
-color: white;
+  display: block;
+  color: white;
 }
 
 .container {
@@ -24,7 +24,7 @@ color: white;
 }
 
 .hidden {
-display: none;
+  display: none;
 }
 
 .comments,
@@ -41,9 +41,11 @@ display: none;
 .authorize-form {
   width: 596px;
   box-sizing: border-box;
-  background: radial-gradient(75.42% 75.42% at 50% 42.37%,
+  background: radial-gradient(
+      75.42% 75.42% at 50% 42.37%,
       rgba(53, 53, 53, 0) 22.92%,
-      #7334ea 100%);
+      #7334ea 100%
+  );
   filter: drop-shadow(0px 20px 67px rgba(0, 0, 0, 0.08));
   border-radius: 20px;
 }
@@ -115,16 +117,16 @@ display: none;
 
 @keyframes rotating {
   from {
-    transform: rotate(0deg);
+      transform: rotate(0deg);
   }
   25% {
-    transform: rotate(30deg);;
+      transform: rotate(30deg);
   }
   75% {
-    transform: rotate(-30deg);;
+      transform: rotate(-30deg);
   }
   to {
-    transform: rotate(0deg);
+      transform: rotate(0deg);
   }
 }
 
@@ -133,8 +135,7 @@ display: none;
 }
 
 .add-form,
-.authorize-form
-{
+.authorize-form {
   padding: 20px;
   margin-top: 48px;
   display: flex;
@@ -144,8 +145,7 @@ display: none;
 .add-form-name,
 .add-form-text,
 .authorize-form-login,
-.authorize-form-password
- {
+.authorize-form-password {
   font-size: 16px;
   font-family: Helvetica;
   border-radius: 8px;
