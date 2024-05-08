@@ -1,5 +1,5 @@
 import { attachLikeButtonHandler } from './likebuttons.js'
-import { initEditComments } from './editcomment.js'
+import { initEditComments } from './editcomments.js'
 import { handlePostClick } from './handlepostclick.js'
 import { renderLogin } from './renderLogin.js'
 export function renderComments(

@@ -1,5 +1,5 @@
 import { postListElement } from './api.js'
-import { fetchAndCommentsRender } from './fetchnrender.js'
+import { fetchAndCommentsRender } from './fetchrender.js'
 import { commentsData } from './main.js'
 import { userName } from './renderLogin.js'
 import { textAreaElement, nameInputElement } from './varexp.js'

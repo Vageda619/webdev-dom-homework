@@ -20,9 +20,9 @@
 
     /***/ }),
     
-    /***/ "./editcomment.js":
+    /***/ "./editcomments.js":
     /*!************************!*\
-      !*** ./editcomment.js ***!
+      !*** ./editcomments.js ***!
       \************************/
     /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
     
@@ -30,9 +30,9 @@
     
     /***/ }),
     
-    /***/ "./fetchnrender.js":
+    /***/ "./fetchrender.js":
     /*!*************************!*\
-      !*** ./fetchnrender.js ***!
+      !*** ./fetchrender.js ***!
       \*************************/
     /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
     

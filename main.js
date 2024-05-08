@@ -1,4 +1,4 @@
-import { fetchAndCommentsRender } from './fetchnrender.js'
+import { fetchAndCommentsRender } from './fetchrender.js'
 import { userName } from './renderLogin.js'
 
 // Объявление переменных
